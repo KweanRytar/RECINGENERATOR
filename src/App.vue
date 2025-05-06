@@ -324,115 +324,118 @@ alert("Please complete all the fields")
  </div>
 
  <!-- invoice section -->
-  <div ref="invoiceRef" v-show="generatingInvoice === true">
-    <div class="mt-10 mr-4 ml-4 mb-0">
-  <div class="flex  justify-around w-full" >
-  <div class="flex flex-col gap-2">
-    <h1 class="text-3xl tracking-wider font-mono font-bold" :style="{color: primaryColor}">{{ companyName}}</h1>
-  <h2 class="font-bold text-2xl" :style="{color: secondaryColor}">
-        Amount Due: NGN {{totalAmount}}
-      </h2>
-  </div>
-  
-  <div class=" flex gap-0">
-  
-<div class="p-4" :style="{background: secondaryColor}">
-  <p class="text-white font-mono text-sm">INVOICE NO: {{ invoiceNumber }}</p>
-</div>
-<div class="flex flex-col  p-4 " :style="{background: primaryColor}">
-<p class="text-sm font-bold text-white">Issue Date</p>
-<p class="text-white font-mono">{{ IssueDate }}</p>
-<hr class=" text-white mb-4">
-<p class="text-sm font-bold text-white text-nowrap">Delivery Date</p>
-<p class="text-white font-mono">{{ DeliveryDate }}</p>
-<hr class=" text-white mb-4">
-<p class="text-sm font-bold text-white text-nowrap">Due Date</p>
-<p class="text-white font-mono">{{ DueDate }}</p>
+ <div ref="invoiceRef" v-show="generatingInvoice === true">
+  <div class="mt-10 mx-4 mb-0">
+    <!-- Header Section -->
+    <div class="flex flex-col md:flex-row justify-between w-full gap-4">
+      <div class="flex flex-col gap-2">
+        <h1 class="text-2xl md:text-3xl tracking-wider font-mono font-bold" :style="{color: primaryColor}">
+          {{ companyName }}
+        </h1>
+        <h2 class="font-bold text-xl md:text-2xl" :style="{color: secondaryColor}">
+          Amount Due: NGN {{ totalAmount }}
+        </h2>
+      </div>
 
-</div>
-    </div>
-  
-      
-    
- </div>
- 
-  <div >
-    
-    
-
- </div>
-    <hr class="mt-4 mb-2 border-2" :style="{color: secondaryColor}"/>
-   <!-- supplier and client information  -->
-    <div class="flex justify-between ">
-      <!-- supplier information -->
-       <div>
-<h2 class="m-2 font-bold text-center text-2xl" :style="{color: secondaryColor}">Supplier</h2>
-<p class="font-bold m-2 uppercase">{{ companyName }}</p>
-<p>{{ companyAddress }}</p>
-       </div>
-       <div class="w-px h-22 bg-gray-400 m-4"></div>
-       <!-- client information -->
-        <div>
-<h2 class="m-2 font-bold text-center text-2xl" :style="{color: primaryColor}">Client</h2>
-<p class="font-bold m-2 uppercase">{{ ClientName }}</p>
-<p>{{ ClientAddress }}</p>
+      <!-- Invoice Date Section -->
+      <div class="flex flex-col md:flex-row gap-2">
+        <div class="p-4" :style="{background: secondaryColor}">
+          <p class="text-white font-mono text-xs">INVOICE NO: {{ invoiceNumber }}</p>
         </div>
+        <div class="flex flex-col p-4" :style="{background: primaryColor}">
+          <p class="text-xs font-bold text-white">Issue Date</p>
+          <p class="text-white font-mono text-xs">{{ IssueDate }}</p>
+          <hr class="text-white mb-2">
+          <p class="text-xs font-bold text-white">Delivery Date</p>
+          <p class="text-white font-mono text-xs">{{ DeliveryDate }}</p>
+          <hr class="text-white mb-2">
+          <p class="text-xs font-bold text-white">Due Date</p>
+          <p class="text-white font-mono text-xs">{{ DueDate }}</p>
+        </div>
+      </div>
     </div>
-    <!-- thank you section -->
-     
-    <div class="flex justify-around mt-6 ml-4 gap-x-3">
-<div class="flex flex-col">
-      <p class="text-gray-500 font-bold">Payment Method</p>
-      <p class="font-black">{{ paymentMethod }}</p>
-     </div>
-     <div>
-      <p class="text-3xl font-medium"> THANK YOU FOR YOUR PURCHASE</p>
-     </div>
+
+    <hr class="mt-4 mb-2 border-2" :style="{color: secondaryColor}" />
+
+    <!-- Supplier and Client Section -->
+    <div class="flex flex-col md:flex-row justify-between gap-4">
+      <!-- Supplier -->
+      <div class="flex-1">
+        <h2 class="m-2 font-bold text-center text-xl" :style="{color: secondaryColor}">Supplier</h2>
+        <p class="font-bold m-2 uppercase">{{ companyName }}</p>
+        <p>{{ companyAddress }}</p>
+      </div>
+
+      <!-- Divider -->
+      <div class="hidden md:block w-px bg-gray-400 mx-4"></div>
+
+      <!-- Client -->
+      <div class="flex-1">
+        <h2 class="m-2 font-bold text-center text-xl" :style="{color: primaryColor}">Client</h2>
+        <p class="font-bold m-2 uppercase">{{ ClientName }}</p>
+        <p>{{ ClientAddress }}</p>
+      </div>
     </div>
-    <!-- table section -->
-    <div class="mt-6">
+
+    <!-- Payment & Thank You -->
+    <div class="flex flex-col md:flex-row justify-between mt-6 gap-4">
+      <div class="flex flex-col">
+        <p class="text-gray-500 font-bold text-sm">Payment Method</p>
+        <p class="font-black text-sm">{{ paymentMethod }}</p>
+      </div>
+      <div>
+        <p class="text-lg md:text-2xl font-medium">THANK YOU FOR YOUR PURCHASE</p>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div class="mt-6 overflow-x-auto">
       <table class="w-full text-sm text-left text-gray-500">
         <thead class="text-xs text-white uppercase" :style="{background: primaryColor}">
           <tr>
-            <th scope="col" class="px-6 py-3 border-2 border-white">Item Name</th>
-            <th scope="col" class="px-6 py-3 border-2 border-white">Description</th>
-            <th scope="col" class="px-6 py-3 border-2 border-white">Quantity</th>
-            <th scope="col" class="px-6 py-3 border-2 border-white">Unit Price</th>
-            <th scope="col" class="px-6 py-3 border-2 border-white">Total</th>
+            <th class="px-2 md:px-6 py-3 border-2 border-white">Item Name</th>
+            <th class="px-2 md:px-6 py-3 border-2 border-white">Description</th>
+            <th class="px-2 md:px-6 py-3 border-2 border-white">Quantity</th>
+            <th class="px-2 md:px-6 py-3 border-2 border-white">Unit Price</th>
+            <th class="px-2 md:px-6 py-3 border-2 border-white">Total</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="(item, index) in items" :key="index" class="bg-white border-b hover:bg-gray-50">
-            <td class="px-6 py-4 font-medium text-gray-900">{{ item.name }}</td>
-            <td class="px-6 py-4 font-medium text-gray-900">{{ item.description }}</td>
-            <td class="px-6 py-4 font-medium text-gray-900">{{ item.quantity }}</td>
-            <td class="px-6 py-4 font-medium text-gray-900">{{ item.unitPrice }}</td>
-            <td class="px-6 py-4 font-medium text-gray-900">{{ item.total }}</td>
+            <td class="px-2 md:px-6 py-4 text-gray-900">{{ item.name }}</td>
+            <td class="px-2 md:px-6 py-4 text-gray-900">{{ item.description }}</td>
+            <td class="px-2 md:px-6 py-4 text-gray-900">{{ item.quantity }}</td>
+            <td class="px-2 md:px-6 py-4 text-gray-900">{{ item.unitPrice }}</td>
+            <td class="px-2 md:px-6 py-4 text-gray-900">{{ item.total }}</td>
           </tr>
           <tr class="bg-white border-b hover:bg-gray-50">
-            <td colspan="4" class="px-6 py-4 font-medium text-gray-900">Total Amount</td>
-            <td class="px-6 py-4 font-medium text-gray-900">{{ totalAmount }}</td>
+            <td colspan="4" class="px-2 md:px-6 py-4 text-gray-900 font-medium">Total Amount</td>
+            <td class="px-2 md:px-6 py-4 text-gray-900 font-medium">{{ totalAmount }}</td>
           </tr>
         </tbody>
       </table>
     </div>
-    <img  :src="imageUrl" alt="image" class="w-18 mx-auto">
-    <p class="text-center font-bold">Director, {{ companyName }}</p>
-    <!-- footer section -->
+
+    <!-- Signature -->
+    <img :src="imageUrl" alt="image" class="w-24 md:w-18 mx-auto my-4" />
+    <p class="text-center font-bold text-sm">Director, {{ companyName }}</p>
+
+    <!-- Footer -->
     <div class="flex flex-col justify-between mt-6 rounded-2xl p-4" :style="{background: primaryColor}">
-      <p class="text-sm text-gray-500 mb-2 text-center">Thank you for your Trust!</p>
-      <p class="text-sm text-gray-500 mb-2 text-center">If you have any questions, feel free to contact us.</p>
-      <p class="text-sm text-gray-500 text-center uppercase font-bold m-2">{{ companyName }}</p>
+      <p class="text-xs text-gray-300 mb-2 text-center">Thank you for your Trust!</p>
+      <p class="text-xs text-gray-300 mb-2 text-center">If you have any questions, feel free to contact us.</p>
+      <p class="text-xs text-gray-300 text-center uppercase font-bold m-2">{{ companyName }}</p>
       <hr :style="{color: secondaryColor}" class="border-2 mb-2">
-      <div class=" flex justify-around gap-4">
-        <p class="text-sm text-gray-500">Phone: {{ CompanyNumber }}</p>
-      <p class="text-sm text-gray-500">Email: {{ CompanyEmail }}</p>
-      <p class="text-sm text-gray-500">Website: {{ CompanyWebsite }}</p>
+      <div class="flex flex-col sm:flex-row justify-center sm:justify-around text-center gap-2 sm:gap-4">
+        <p class="text-xs text-gray-300">Phone: {{ CompanyNumber }}</p>
+        <p class="text-xs text-gray-300">Email: {{ CompanyEmail }}</p>
+        <p class="text-xs text-gray-300">Website: {{ CompanyWebsite }}</p>
       </div>
-      
     </div>
- </div>
   </div>
+</div>
+
+ 
  
  <div class="flex justify-center bg-blue-500 rounded-2xl gap-6 p-8 m-12" v-show="generatingInvoice === true">
   <button class="bg-green-500 text-white rounded-2xl p-4"  @click="()=>{invoiceOrder = true;
@@ -491,78 +494,90 @@ alert("Please complete all the fields")
   </div>
 
   <!-- receipt template -->
-   <div class="mx-auto my-auto p-4" v-show="generatingReceipt === true" ref="receipt">
-    <div>
-      <div>
-      <img :src="logoUrl" alt="" class="rounded-[50%]  p-2 h-10 w-[20]" :style="{
-        backgroundColor: primaryColorRec}">
-      <h1 class="text-2xl font-bold mt-4" :style="{
-        color: primaryColorRec
-      }">{{ companyNameRec }}</h1>
-      <p class="font-mono capitalize text-amber-700">{{ companyAddressRec }}</p>
-      <p class="font-mono text-amber-600 "><span>{{ CompanyPhoneNumberRec }}</span> | {{ CompanyEmailRec }}</p>
-    </div>
-    
-<div class="flex justify-between">
- <div>
-<p class="font-bold mt-4 mb-2">RECIEPENT:</p>
-<p class="capitalize font-bold" :style="{color: primaryColorRec}">{{ clientNameRec }}</p>
-<p>{{ clientAddressRec }}</p>
- </div>
- <div>
-<p class="text-white font-semibold rounded-2xl h-12 p-4" :style="{
-  backgroundColor: secondaryColorRec
-}">Receipt for #{{ recNumber }}</p>
-<p class="text-white font-semibold  h-12 w-fit p-2 bg-gray-400">Transaction Date: {{ transactionDate }}</p>
- </div>
-  
-</div>
-    </div>
-      
+  <div class="mx-auto my-auto p-4" v-show="generatingReceipt === true" ref="receipt">
   <div>
-    <table class="w-full text-sm text-left text-gray-500 ml-4 mt-6">
-      <thead class="text-xs text-white uppercase" :style="{background: secondaryColorRec}">
+    <!-- Header -->
+    <div class="text-center">
+      <img :src="logoUrl" alt="logo"
+        class="rounded-full p-2 h-10 w-10 mx-auto"
+        :style="{ backgroundColor: primaryColorRec }"
+      />
+      <h1 class="text-2xl font-bold mt-4" :style="{ color: primaryColorRec }">
+        {{ companyNameRec }}
+      </h1>
+      <p class="font-mono capitalize text-amber-700">{{ companyAddressRec }}</p>
+      <p class="font-mono text-amber-600">
+        <span>{{ CompanyPhoneNumberRec }}</span> | {{ CompanyEmailRec }}
+      </p>
+    </div>
+
+    <!-- Recipient & Receipt Info -->
+    <div class="flex flex-col md:flex-row justify-between mt-6 gap-4">
+      <div>
+        <p class="font-bold mb-2">RECIPIENT:</p>
+        <p class="capitalize font-bold" :style="{ color: primaryColorRec }">{{ clientNameRec }}</p>
+        <p>{{ clientAddressRec }}</p>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <p class="text-white font-semibold rounded-xl px-4 py-2 w-fit text-sm"
+          :style="{ backgroundColor: secondaryColorRec }">
+          Receipt for #{{ recNumber }}
+        </p>
+        <p class="text-white font-semibold px-4 py-2 w-fit bg-gray-400 text-sm">
+          Transaction Date: {{ transactionDate }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table Section -->
+  <div class="mt-6 overflow-x-auto">
+    <table class="w-full text-sm text-left text-gray-500">
+      <thead class="text-xs text-white uppercase" :style="{ background: secondaryColorRec }">
         <tr>
-          <th scope="col" class="px-6 py-3 border-2 border-white">Product/service Name</th>
-          <th scope="col" class="px-6 py-3 border-2 border-white">Description</th>
-          <th scope="col" class="px-6 py-3 border-2 border-white">Quantity</th>
-          <th scope="col" class="px-6 py-3 border-2 border-white">Unit Price</th>
-          <th scope="col" class="px-6 py-3 border-2 border-white">Total</th>
+          <th class="px-4 py-3 border-2 border-white">Product/Service</th>
+          <th class="px-4 py-3 border-2 border-white">Description</th>
+          <th class="px-4 py-3 border-2 border-white">Quantity</th>
+          <th class="px-4 py-3 border-2 border-white">Unit Price</th>
+          <th class="px-4 py-3 border-2 border-white">Total</th>
         </tr>
-       </thead>
-       <tbody v-for="(item, index) in recItems" :key="index">
-        <tr>
-<td class="font-bold capitalize text-center">{{ item.name }}</td>
-<td class="font-bold capitalize text-center">{{ item.description }}</td>
-<td class="font-bold capitalize text-center">{{ item.quantity }}</td>
-<td class="font-bold capitalize text-center">{{ item.unitPrice }}</td>
-<td class="font-bold capitalize text-center">{{ item.total }}</td>
+      </thead>
+      <tbody>
+        <tr v-for="(item, index) in recItems" :key="index" class="bg-white border-b">
+          <td class="px-4 py-2 text-center font-bold capitalize">{{ item.name }}</td>
+          <td class="px-4 py-2 text-center font-bold capitalize">{{ item.description }}</td>
+          <td class="px-4 py-2 text-center font-bold capitalize">{{ item.quantity }}</td>
+          <td class="px-4 py-2 text-center font-bold capitalize">{{ item.unitPrice }}</td>
+          <td class="px-4 py-2 text-center font-bold capitalize">{{ item.total }}</td>
         </tr>
-        
-       </tbody><tr>
-          <td colspan="4" class="text-2xl font-bold text-center "> TOTAL</td>
-          <td class="text-2xl text-center font-bold">{{ totalAmountRec }}</td>
+      </tbody>
+      <tfoot>
+        <tr class="bg-gray-100">
+          <td colspan="4" class="text-center text-lg font-bold py-3">TOTAL</td>
+          <td class="text-center text-lg font-bold py-3">{{ totalAmountRec }}</td>
         </tr>
+      </tfoot>
     </table>
   </div>
-  <p class="m-4 text-2xl text-center font-bold">Thanks for your patronage</p>
-<div class="flex justify-between mt-8">
-  <div>
-    <p class="font-bold ml-4">Company's Acknoledgment</p>
-  <img :src="recSignature" alt="" class="w-[20] h-16">
-  </div>
 
-  
+  <!-- Footer Message -->
+  <p class="m-4 text-xl text-center font-bold">Thanks for your patronage</p>
 
-
- <div>
-  <p class="font-bold ">Customer's Signature</p>
-
- </div>
-
+  <!-- Signatures -->
+  <div class="flex flex-col md:flex-row justify-between mt-8 gap-6">
+    <div class="text-center md:text-left">
+      <p class="font-bold mb-2">Company's Acknowledgment</p>
+      <img :src="recSignature" alt="signature" class="w-24 h-16 mx-auto md:mx-0" />
     </div>
-    
-   </div>
+    <div class="text-center md:text-right">
+      <p class="font-bold">Customer's Signature</p>
+      <!-- Customer can sign here if printed -->
+      <div class="w-40 h-12 border-b-2 border-dashed mx-auto md:mx-0"></div>
+    </div>
+  </div>
+</div>
+
   
 <div class="flex justify-center bg-blue-500 rounded-2xl gap-6 p-8 m-12" v-if="generatingReceipt === true">
   <button class="bg-green-500 text-white rounded-2xl p-4"  @click="()=>{invoiceOrder = true;
