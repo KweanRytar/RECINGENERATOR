@@ -133,7 +133,7 @@ const downloadInvoice = async () => {
       const pdfWidth = pdf.internal.pageSize.getWidth();
       const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
       pdf.addImage(dataUrl, 'PNG', 0, 0, pdfWidth, pdfHeight);
-      pdf.save(ClientName + '-' + invoiceNumber);
+      pdf.save(ClientName.value + '-' + invoiceNumber.value);
     })
     .catch((error) => {
       console.error('Error generating PDF:', error);
